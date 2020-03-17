@@ -1,22 +1,28 @@
-# Create a security group to allow SSH traffic
-resource "aws_security_group" "allow_all" {
-  name = "allow_all_sg"
-  description = "Allow all traffic"
-  vpc_id = var.vpc_id
+resource "aws_security_group" "sg" {
+  name          = var.sg_name
+  description   = "Security group rule"
+  vpc_id        = var.vpc_id
 
   ingress {
     cidr_blocks = [
-      "0.0.0.0/0"
-    ]
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
+                    var.cidr_block
+                  ]
+    from_port   = var.in_port_low
+    to_port     = var.in_port_high
+    protocol    = var.sg_protocol
   }
 
   egress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+    from_port   = var.out_port_low
+    to_port     = var.out_port_high
+    protocol    = var.sg_protocol
+    cidr_blocks = [
+                    var.cidr_block
+                  ]
   }
+
+  tags          = {
+                    Name = "${var.env}:${var.sg_name}"
+                    Env  = var.env
+                  }
 }
