@@ -1,5 +1,6 @@
 resource "aws_vpc" "vpc" {
   cidr_block              = var.cidr_block
+
   tags                    = {
                               Name = "${var.env}_vpc"
                               Env  = var.env
@@ -10,6 +11,7 @@ resource "aws_subnet" "subnet" {
   vpc_id                  = aws_vpc.vpc.id
   cidr_block              = var.subnet
   map_public_ip_on_launch = "true"
+
   tags                    = {
                               Name = "${var.env}_subnet"
                               Env  = var.env
@@ -18,6 +20,7 @@ resource "aws_subnet" "subnet" {
 
 resource "aws_internet_gateway" "gw" {
   vpc_id                  = aws_vpc.vpc.id
+
   tags                    = {
                               Name = "${var.env}_gw"
                               Env  = var.env
