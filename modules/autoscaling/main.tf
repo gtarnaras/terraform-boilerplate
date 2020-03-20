@@ -1,29 +1,48 @@
-resource "aws_launch_template" "launch_template_cfg" {
-  name_prefix              = "launch_template_cfg"
-  image_id                 = var.ami_id
-  instance_type            = var.instance_type
+resource "aws_launch_template" "this" {
+  name_prefix                 = var.name_prefix
+  image_id                    = var.ami_id
+  instance_type               = var.instance_type
 
   lifecycle {
-    create_before_destroy = true
+    create_before_destroy     = var.create_before_destroy
   }
 }
 
-resource "aws_autoscaling_group" "worker" {
+# resource "aws_placement_group" "test" {
+#   name                        = "test"
+#   strategy                    = "cluster"
+# }
 
-  name                     = "worker-asg"
-  availability_zones       = ["us-east-1a"]
-  desired_capacity         = 1
-  max_size                 = 1
-  min_size                 = 1
-  load_balancers           = [var.aws_lb]
-  health_check_type        = var.health_check_type
-  vpc_zone_identifier      = [var.subnet_id]
+resource "aws_autoscaling_group" "this" {
+
+  name                        = "${var.name_prefix}-asg"
+
+  desired_capacity            = var.desired_capacity
+  max_size                    = var.max_size
+  min_size                    = var.min_size
+  # placement_group             = "${aws_placement_group.test.id}"
+
+  load_balancers              = var.load_balancers
+  health_check_type           = var.health_check_type
+  health_check_grace_period   = var.health_check_grace_period
+  
+  vpc_zone_identifier         = var.vpc_zone_identifier
+  force_delete                = var.force_delete
+  wait_for_capacity_timeout   = var.wait_for_capacity_timeout
+
+  lifecycle {
+    create_before_destroy     = var.create_before_destroy
+  }
+
+  timeouts {
+    delete                    = var.timeouts
+  }
 
   mixed_instances_policy {
     launch_template {
       launch_template_specification {
-        launch_template_id = aws_launch_template.launch_template_cfg.id
-        version            = "$Latest"
+        launch_template_id    = aws_launch_template.this.id
+        version               = var.launch_template_version
       }
 
     #   override {
@@ -39,9 +58,9 @@ resource "aws_autoscaling_group" "worker" {
   }
 
   tag {
-    key = "Name"
-    value = "terraform-asg-example"
-    propagate_at_launch = true
+    key                       = "Name"
+    value                     = "terraform-asg-example"
+    propagate_at_launch       = true
   }
 
 }
