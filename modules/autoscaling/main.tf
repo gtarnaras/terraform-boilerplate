@@ -1,10 +1,12 @@
 resource "aws_launch_template" "this" {
   name_prefix                 = var.name_prefix
-  image_id                    = var.ami_id
+  image_id                    = var.image_id
   instance_type               = var.instance_type
 
+  vpc_security_group_ids      = var.vpc_security_group_ids
+
   lifecycle {
-    create_before_destroy     = var.create_before_destroy
+    create_before_destroy     = true
   }
 }
 
@@ -31,7 +33,7 @@ resource "aws_autoscaling_group" "this" {
   wait_for_capacity_timeout   = var.wait_for_capacity_timeout
 
   lifecycle {
-    create_before_destroy     = var.create_before_destroy
+    create_before_destroy     = true
   }
 
   timeouts {

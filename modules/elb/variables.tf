@@ -1,13 +1,13 @@
 variable "name" {
   description = "The name of the ELB"
   type        = string
-  default     = "dev"
+  default     = null
 }
 
 variable "name_prefix" {
   description = "The prefix name of the ELB"
   type        = string
-  default     = "dev"
+  default     = null
 }
 
 variable "subnet_id" {
