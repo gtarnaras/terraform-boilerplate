@@ -1,10 +1,9 @@
 ![Logo of the project](documentation/diagrams/reinvent-the-wheel.jpg)
 
-# Name of the project
+# Terraform boilerplate
 > Additional information or tagline
 
-A brief description of your project, what it is used for and how does life get
-awesome when someone starts to use it.
+This is a terraform boilerplate project that is building a n-tier infrastructure environment.
 
 ## Installing / Getting started
 
@@ -94,19 +93,10 @@ Copy-paste as many of these as you need.
 
 ## Contributing
 
-When you publish something open source, one of the greatest motivations is that
-anyone can just jump in and start contributing to your project.
+If you'd like to contribute, please fork the repository and use a feature
+branch. Pull requests are warmly welcome.
 
-These paragraphs are meant to welcome those kind souls to feel that they are
-needed. You should state something like:
-
-"If you'd like to contribute, please fork the repository and use a feature
-branch. Pull requests are warmly welcome."
-
-If there's anything else the developer needs to know (e.g. the code style
-guide), you should link it here. If there's a lot of things to take into
-consideration, it is common to separate this section to its own file called
-`CONTRIBUTING.md` (or similar). If so, you should say that it exists here.
+See the `CONTRIBUTING.md` page for more info.
 
 ## Links
 
@@ -126,10 +116,6 @@ links to humans using your project. You can include links like:
 
 
 ## Licensing
-
-One really important part: Give your project a proper license. Here you should
-state what the license is and how to find the text version of the license.
-Something like:
 
 "The code in this project is licensed under MIT license."
 
