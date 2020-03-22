@@ -25,7 +25,7 @@ resource "aws_autoscaling_group" "this" {
   load_balancers              = var.load_balancers
   health_check_type           = var.health_check_type
   health_check_grace_period   = var.health_check_grace_period
-  
+
   vpc_zone_identifier         = var.vpc_zone_identifier
   force_delete                = var.force_delete
   wait_for_capacity_timeout   = var.wait_for_capacity_timeout

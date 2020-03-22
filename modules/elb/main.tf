@@ -1,4 +1,4 @@
-resource "aws_elb" "lb" {
+resource "aws_elb" "this" {
   name                        = var.name
   name_prefix                 = var.name_prefix
 

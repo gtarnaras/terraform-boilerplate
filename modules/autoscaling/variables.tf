@@ -6,7 +6,7 @@ variable "ami_id" {
 variable "name_prefix" {
   description = "The prefix name of the Launch Template"
   type        = string
-  default     = null
+  default     = "dev"
 }
 
 variable "create_before_destroy" {
@@ -31,12 +31,6 @@ variable "instance_type" {
   description = "The size of instance to launch"
   type        = string
   default     = "t2.micro"
-}
-
-variable "name_prefix" {
-  description = "The prefix name of the Launch Template"
-  type        = string
-  default     = null
 }
 
 variable "max_size" {

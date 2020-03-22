@@ -1,3 +1,4 @@
 output "aws_elb_name" {
-    value = "${aws_elb.lb.id}"
+  description = "The id of the ELB"
+  value = "${aws_elb.lb.id}"
 }
