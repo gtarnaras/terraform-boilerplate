@@ -1,11 +1,14 @@
 output "vpc_id" {
-  value = "${aws_vpc.vpc.id}"
+  description = "The vpc id"
+  value = "${aws_vpc.this.id}"
 }
 
 output "subnet_id" {
-  value = "${aws_subnet.subnet.id}"
+  description = "The subnet id"
+  value = "${aws_subnet.this.id}"
 }
 
 output "cidr_block" {
-  value = "${aws_vpc.vpc.cidr_block}"
+  description = "The cidr block id"
+  value = "${aws_vpc.this.cidr_block}"
 }
