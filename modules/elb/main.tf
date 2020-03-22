@@ -19,12 +19,15 @@ resource "aws_elb" "this" {
     }
   }
 
-  health_check {
-    healthy_threshold   = lookup(var.health_check, "healthy_threshold")
-    unhealthy_threshold = lookup(var.health_check, "unhealthy_threshold")
-    target              = lookup(var.health_check, "target")
-    interval            = lookup(var.health_check, "interval")
-    timeout             = lookup(var.health_check, "timeout")
+  dynamic "health_check" {
+    for_each = var.health_check
+    content {
+      healthy_threshold   = health_check.value.healthy_threshold
+      unhealthy_threshold = health_check.value.unhealthy_threshold
+      target              = health_check.value.target
+      interval            = health_check.value.interval
+      timeout             = health_check.value.timeout
+    }
   }
 
 }

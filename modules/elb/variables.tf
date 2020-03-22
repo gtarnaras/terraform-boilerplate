@@ -51,6 +51,6 @@ variable "health_check" {
   #   interval            = 30
   #   target              = "HTTP:8080/"
   # }
-  description = "A health check block"
-  type        = map(string)
+  description = "A list of health check block"
+  type        = list(map(string))
 }
