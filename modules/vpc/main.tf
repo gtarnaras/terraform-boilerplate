@@ -10,7 +10,7 @@ resource "aws_vpc" "this" {
 resource "aws_subnet" "this" {
   vpc_id                  = aws_vpc.this.id
   cidr_block              = var.subnet
-  map_public_ip_on_launch = "true"
+  map_public_ip_on_launch = var.map_public_ip_on_launch
 
   tags                    = {
                               Name = "${var.env}_subnet"
