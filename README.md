@@ -1,4 +1,4 @@
-![Logo of the project](documentation/diagrams/reinvent-the-wheel-jpg)
+![Logo of the project](documentation/diagrams/reinvent-the-wheel.jpg)
 
 # Name of the project
 > Additional information or tagline
