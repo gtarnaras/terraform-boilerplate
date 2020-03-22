@@ -10,19 +10,14 @@ variable "name_prefix" {
   default     = null
 }
 
-variable "aws_lb_security_group_id" {
-  description = "A list of security group IDs to assign to the ELB"
-  type        = list(string)
-}
-
 variable "subnet_id" {
   description = "A list of subnet IDs to attach to the ELB"
   type        = list(string)
 }
 
-variable "aws_lb_availability_zones" {
-  description = "List of AZs"
-  type        = list
+variable "aws_lb_security_group_id" {
+  description = "A list of security group IDs to assign to the ELB"
+  type        = list(string)
 }
 
 variable "internal" {

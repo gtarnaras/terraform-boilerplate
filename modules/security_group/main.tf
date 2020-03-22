@@ -1,28 +1,23 @@
 resource "aws_security_group" "sg" {
-  name          = var.sg_name
-  description   = "Security group rule"
-  vpc_id        = var.vpc_id
+  name            = var.sg_name
+  description     = "Security group rule"
+  vpc_id          = var.vpc_id
 
-  ingress {
-    cidr_blocks = [
-                    var.cidr_block
-                  ]
-    from_port   = var.in_port_low
-    to_port     = var.in_port_high
-    protocol    = var.sg_protocol
+  dynamic "ingress" {
+    iterator      = port
+    for_each      = var.ingress_ports
+    content {
+      from_port   = port.value
+      to_port     = port.value
+      protocol    = var.protocol
+      cidr_blocks = [
+                      var.cidr_block
+                    ]
+    }
   }
 
-  egress {
-    from_port   = var.out_port_low
-    to_port     = var.out_port_high
-    protocol    = var.sg_protocol
-    cidr_blocks = [
-                    var.cidr_block
-                  ]
-  }
-
-  tags          = {
-                    Name = "${var.env}:${var.sg_name}"
-                    Env  = var.env
-                  }
+  tags            = {
+                      Name = "${var.env}:${var.sg_name}"
+                      Env  = var.env
+                    }
 }

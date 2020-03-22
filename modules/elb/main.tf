@@ -7,7 +7,6 @@ resource "aws_elb" "lb" {
   security_groups             = var.aws_lb_security_group_id
   internal                    = var.internal
 
-  # availability_zones        = var.aws_lb_availability_zones
   cross_zone_load_balancing   = var.cross_zone_load_balancing
 
   listener                    = var.listener

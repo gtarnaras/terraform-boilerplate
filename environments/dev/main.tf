@@ -11,10 +11,7 @@ module "sg_rule_setup" {
   sg_name                   = "Default rule"
   vpc_id                    = "${module.vpc_setup.vpc_id}"
   cidr_block                = "${module.vpc_setup.cidr_block}"
-  in_port_low               = "0"
-  in_port_high              = "65535"
-  out_port_low              = "0"
-  out_port_high             = "65535"
+  ingress_ports             = ["80", "423"]
   sg_protocol               = "TCP"
 }
 

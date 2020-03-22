@@ -1,33 +1,29 @@
 variable "sg_name" {
-  default = "sg_name"
+  description = "The security group name"
+  default     = "sg_name"
+}
+
+variable "vpc_id" {
+  description = "The vpc id"
 }
 
 variable "env" {
-  default = "test"
+  description = "The environment name"
+  default     = "test"
 }
 
-variable "vpc_id" {}
+variable "ingress_ports" {
+  description = "list of ingress ports"
+  type        = list(number)
+  default     = [80, 423]
+}
 
 variable "cidr_block" {
-  default = "10.0.0.0/16"
+  description = "The cidr block address"
+  default     = "10.0.0.0/16"
 }
 
-variable "in_port_low" {
-  default = "0"
-}
-
-variable "in_port_high" {
-  default = "0" #65535 but let's keep things secure
-}
-
-variable "sg_protocol" {
-  default = "-1"
-}
-
-variable "out_port_low" {
-  default = "0"
-}
-
-variable "out_port_high" {
-  default = "0" #65535 but let's keep things secure
+variable "protocol" {
+  description = "The protocol type, could be TCP/UDP"
+  default     = "-1"
 }
