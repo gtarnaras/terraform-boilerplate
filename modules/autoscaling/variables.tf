@@ -6,7 +6,7 @@ variable "name_prefix" {
 
 variable "image_id" {
   description = "The name of the AMI ID"
-  default = "ami-0fc61db8544a617ed"
+  default     = "ami-0fc61db8544a617ed"
 }
 
 variable "instance_type" {
@@ -83,7 +83,7 @@ variable "vpc_zone_identifier" {
 
 variable "env" {
   description = "Current environment name"
-  default = "test"
+  default     = "test"
 }
 
 variable "launch_template_version" {

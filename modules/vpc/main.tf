@@ -1,10 +1,10 @@
 resource "aws_vpc" "this" {
-  cidr_block              = var.cidr_block
+  cidr_block = var.cidr_block
 
-  tags                    = {
-                              Name = "${var.env}_vpc"
-                              Env  = var.env
-                            }
+  tags = {
+    Name = "${var.env}_vpc"
+    Env  = var.env
+  }
 }
 
 resource "aws_subnet" "this" {
@@ -12,19 +12,19 @@ resource "aws_subnet" "this" {
   cidr_block              = var.subnet
   map_public_ip_on_launch = var.map_public_ip_on_launch
 
-  tags                    = {
-                              Name = "${var.env}_subnet"
-                              Env  = var.env
-                            }
+  tags = {
+    Name = "${var.env}_subnet"
+    Env  = var.env
+  }
 }
 
 resource "aws_internet_gateway" "this" {
-  vpc_id                  = aws_vpc.this.id
+  vpc_id = aws_vpc.this.id
 
-  tags                    = {
-                              Name = "${var.env}_gw"
-                              Env  = var.env
-                            }
+  tags = {
+    Name = "${var.env}_gw"
+    Env  = var.env
+  }
 }
 
 # resource "aws_default_route_table" "route_table" {

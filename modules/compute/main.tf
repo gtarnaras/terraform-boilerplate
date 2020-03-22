@@ -7,8 +7,8 @@ resource "aws_instance" "ec2_instance" {
   associate_public_ip_address = true
   # instance_count = var.number_of_instances
 
-  tags                        = {
-                                  Name = "${var.env}_instance"
-                                  Env  = var.env
-                                }
+  tags = {
+    Name = "${var.env}_instance"
+    Env  = var.env
+  }
 }
