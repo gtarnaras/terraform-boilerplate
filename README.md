@@ -42,16 +42,12 @@ See the `CONTRIBUTING.md` page for more info.
 
 ## Links
 
-Even though this information can be found inside the project on machine-readable
-format like in a .json file, it's good to include a summary of most useful
-links to humans using your project. You can include links like:
-
 - Repository: https://github.com/gtarnaras/terraform-boilerplate
 - Issue tracker: https://github.com/gtarnaras/terraform-boilerplate/issues
 
 ## Licensing
 
-"The code in this project is licensed under MIT license."
+The code in this project is licensed under MIT license.
 
 ## Author
 
