@@ -1,9 +1,23 @@
-variable "ami_id" {
-  default = "ami-0fc61db8544a617ed"
+variable "ami" {
+  description = "The AMI id"
+  default     = "ami-0fc61db8544a617ed"
 }
 
 variable "instance_type" {
-  default = "t2.micro"
+  description = "The instance type "
+  default     = "t2.micro"
+}
+
+variable "instance_count" {
+  description = "Number of instances to launch"
+  type        = number
+  default     = 1
+}
+
+variable "subnet_id" {
+  description = "The VPC Subnet ID to launch in"
+  type        = list(string)
+  default     = []
 }
 
 variable "vpc_security_group_ids" {
@@ -11,8 +25,13 @@ variable "vpc_security_group_ids" {
   type        = list
 }
 
-variable "subnet_id" {}
+variable "associate_public_ip_address" {
+  description = "Attach a public ip address to the instance"
+  type        = bool
+  default     = false
+}
 
 variable "env" {
-  default = "test"
+  description = "The name to be used to tag the resources"
+  default     = "test"
 }

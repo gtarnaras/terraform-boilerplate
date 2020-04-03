@@ -4,6 +4,7 @@
 
 # Local .terraform directories
 **/.terraform/*
+terradroid.yml
 
 # .tfstate files
 *.tfstate

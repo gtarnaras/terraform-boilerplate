@@ -1,3 +1,4 @@
 output "ec2_instance_id" {
-  value = "${aws_instance.ec2_instance.id}"
+  description = "List of ec2 instances IDs"
+  value       = "${aws_instance.this.id}"
 }

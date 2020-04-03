@@ -17,7 +17,7 @@ module "sg_rule_setup" {
 
 module "lb_setup" {
   source                   = "../../modules/elb"
-  subnet_id                = ["${module.vpc_setup.subnet_id}"]
+  subnets                  = ["${module.vpc_setup.subnet_id}"]
   aws_lb_security_group_id = ["${module.sg_rule_setup.vpc_security_group_ids}"]
   listener                 = [{ lb_port = 80, lb_protocol = "http", instance_port = "8080", instance_protocol = "http" }]
   health_check             = [{ healthy_threshold = 2, unhealthy_threshold = 2, timeout = 3, interval = 30, target = "HTTP:80/" }]

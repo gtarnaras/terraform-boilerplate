@@ -8,3 +8,4 @@ provider "aws" {
 module "dev" {
   source = "./environments/dev"
 }
+

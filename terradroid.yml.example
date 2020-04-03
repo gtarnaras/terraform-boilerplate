@@ -1,0 +1,5 @@
+---
+INFRASTRUCTURE: "./infrastructure/"
+ENVIRONMENT: "dev"
+AWS_PROFILE: "personal"
+AWS_CREDENTIALS_PATH: "<your_path>"
