@@ -8,6 +8,9 @@
 #usage		     : python terradroid.py
 #==============================================================================
 
+
+from jinja2 import Environment, PackageLoader
+import os
 import argparse
 import sys
 import yaml
@@ -47,12 +50,28 @@ def read_config():
     return config
 
 def terra_action(option):
-    switcher={
-                'plan':terra_plan(),
-                'apply':terra_apply(),
-                'destroy':terra_destroy()
+    tf_commands={
+                'plan':terra_plan,
+                'apply':terra_apply,
+                'destroy':terra_destroy
              }
-    return switcher.get(option,"Invalid terraform action")
+    tf_commands.get(option,"Invalid terraform action")
+    func = tf_commands.get(option,"Invalid terraform action")
+    return func()
+
+def load_env(aws_credentials_file, aws_profile, deploy_env):
+    env = Environment(loader=PackageLoader('deploy-vars'))
+    template = env.get_template('infrastructure-main')
+
+    root = os.path.dirname(os.path.abspath(__file__))
+    filename = os.path.join(root, 'infrastructure', 'main.tf')
+
+    with open(filename, 'w') as fh:
+        fh.write(template.render(
+            shared_credentials_file = aws_credentials_file,
+            profile = aws_profile,
+            env = deploy_env,
+        ))
 
 def terra_plan():
     print("plan")
@@ -74,6 +93,8 @@ if len(sys.argv) < 2:
 args = parser.parse_args()
 config_file_path = args.config
 config = read_config()
+load_env(config["AWS_CREDENTIALS_PATH"], config["AWS_PROFILE"], config["DEPLOY_ENVIRONMENT"])
 
 tf_action = args.cmd
 terra_action(tf_action)
+
